@@ -5,6 +5,8 @@ import { eq } from 'drizzle-orm';
 import React , {useEffect,useState} from 'react'
 import QuestionsSection from './_components/QuestionsSection';
 import RecordAnswerSection from './_components/RecordAnswerSection';
+import { Button } from '@/components/ui/button';
+import Link from 'next/link';
 
 function StarInterview({params}) {
     
@@ -31,8 +33,8 @@ function StarInterview({params}) {
 
 
   return (
-    <div>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-10 ">
+    <div >
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-10  ">
         {/* Question */}
         
          <QuestionsSection
@@ -44,8 +46,24 @@ function StarInterview({params}) {
           activeQuestionIndex= {activeQuestionIndex}
           interviewData={interviewData}
           />
-        {/* Video / Audio Recording  */}
+       
       </div>
+      <div className='flex justify-end gap-6  -mt-32'>
+        <div  className='flex justify-between gap-60 ml-2' >
+        { activeQuestionIndex>0&&
+         <Button  className="bg-purple-900 ml-7 " onClick={()=>setActiveQuestionIndex(activeQuestionIndex-1) }  >Previous Question</Button>}
+        { activeQuestionIndex!=mockInterviewQuestion?.length-1&&
+         <Button className="bg-purple-900 mr-4" onClick={()=>setActiveQuestionIndex(activeQuestionIndex+1) } >Next Question</Button>}
+
+        { activeQuestionIndex==mockInterviewQuestion?.length-1&&
+
+        <Link href={'/dashboard/interview/'+interviewData?.mockId+"/feedback"} >
+            <Button className="bg-purple-900 mr-4" >End Interview</Button>
+        </Link>
+        }
+        </div>
+      </div>
+
     </div>
   )
 }

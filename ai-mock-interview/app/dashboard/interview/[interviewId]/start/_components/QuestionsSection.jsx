@@ -18,12 +18,14 @@ function QuestionsSection({mockInterviewQuestion,activeQuestionIndex}) {
     <div className='p-5 border rounded-lg  my-10 ' >
         <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 '> 
             {mockInterviewQuestion&&mockInterviewQuestion.map((question,index)=>(
-                <h2 className={`p-2 bg-secondary rounded-full  text-xs md:text-sm  text-center  cursor-pointer
+                <h2 className={`p-2  rounded-full  text-xs md:text-sm  text-center  cursor-pointer
                 
-                 ${activeQuestionIndex == index ? ' text-purple-800 bg-purple-800': ""}
-                `}  >Question  #{index+1}</h2> 
+                 ${activeQuestionIndex == index&&'bg-purple-800 text-white'}`}>Question  {index+1}</h2> 
             ))}
-            
+ 
+
+
+             {/* Video / Audio Recording  */}
         </div>
         
         <h2 className='my-5 ml-2 mt-5 text-md md:text-md' > {mockInterviewQuestion[activeQuestionIndex]?.Question}</h2>
